@@ -324,6 +324,7 @@ KubePodLabels = TypedDict(
         "yelp.com/paasta_service": str,
         "sidecar.istio.io/inject": str,
         "paasta.yelp.com/pool": str,
+        "yelp.com/owner": str,
     },
     total=False,
 )
@@ -1819,6 +1820,7 @@ class KubernetesDeploymentConfig(LongRunningServiceConfig):
             "paasta.yelp.com/git_sha": git_sha,
             "paasta.yelp.com/autoscaled": str(self.is_autoscaling_enabled()).lower(),
             "paasta.yelp.com/pool": self.get_pool(),
+            "yelp.com/owner": self.get_team(),
         }
 
         # Allow the Prometheus Operator's Pod Service Monitor for specified
